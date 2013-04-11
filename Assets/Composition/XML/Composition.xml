@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composition xmlns="http://www.sm4all-project.eu/composition/cbl"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.sm4all-project.eu/composition/cbl http://www.dis.uniroma1.it/~cdc/sm4all/proposals/servicemodel/latest/src/compositions/cbl.xsd"
+             name="TargetBehaviour">
+   <conversational-target-state name="f" type="final">
+      <conversational-orchestration-state>
+         <community-state>
+            <service-conversational-state service="MyEnemyMineBot" state="NodeI"/>
+            <service-conversational-state service="MyEnemyMech" state="NodeN"/>
+            <service-conversational-state service="MyEnemyMineBot1" state="NodeP"/>
+         </community-state>
+      </conversational-orchestration-state>
+   </conversational-target-state>
+   <conversational-target-state name="d" type="final">
+      <conversational-orchestration-state>
+         <community-state>
+            <service-conversational-state service="MyEnemyMineBot" state="NodeH"/>
+            <service-conversational-state service="MyEnemyMech" state="NodeN"/>
+            <service-conversational-state service="MyEnemyMineBot1" state="NodeP"/>
+         </community-state>
+         <transition action="MoveToNodeI" invoke="MyEnemyMineBot">
+            <target state="e"/>
+         </transition>
+      </conversational-orchestration-state>
+   </conversational-target-state>
+   <conversational-target-state name="e" type="final">
+      <conversational-orchestration-state>
+         <community-state>
+            <service-conversational-state service="MyEnemyMineBot" state="NodeI"/>
+            <service-conversational-state service="MyEnemyMech" state="NodeN"/>
+            <service-conversational-state service="MyEnemyMineBot1" state="NodeP"/>
+         </community-state>
+         <transition action="TakeSnapshotNodeI" invoke="MyEnemyMineBot">
+            <target state="f"/>
+         </transition>
+      </conversational-orchestration-state>
+   </conversational-target-state>
+   <conversational-target-state name="b" type="final">
+      <conversational-orchestration-state>
+         <community-state>
+            <service-conversational-state service="MyEnemyMineBot" state="NodeH"/>
+            <service-conversational-state service="MyEnemyMech" state="NodeN"/>
+            <service-conversational-state service="MyEnemyMineBot1" state="NodeT"/>
+         </community-state>
+         <transition action="MoveToNodeP" invoke="MyEnemyMineBot1">
+            <target state="c"/>
+         </transition>
+      </conversational-orchestration-state>
+   </conversational-target-state>
+   <conversational-target-state name="c" type="final">
+      <conversational-orchestration-state>
+         <community-state>
+            <service-conversational-state service="MyEnemyMineBot" state="NodeH"/>
+            <service-conversational-state service="MyEnemyMech" state="NodeN"/>
+            <service-conversational-state service="MyEnemyMineBot1" state="NodeP"/>
+         </community-state>
+         <transition action="TakeSnapshotNodeP" invoke="MyEnemyMineBot1">
+            <target state="d"/>
+         </transition>
+      </conversational-orchestration-state>
+   </conversational-target-state>
+   <conversational-target-state name="a" type="initial-final">
+      <conversational-orchestration-state>
+         <community-state>
+            <service-conversational-state service="MyEnemyMineBot" state="NodeH"/>
+            <service-conversational-state service="MyEnemyMech" state="NodeA"/>
+            <service-conversational-state service="MyEnemyMineBot1" state="NodeT"/>
+         </community-state>
+         <transition action="MoveToNodeN" invoke="MyEnemyMech">
+            <target state="b"/>
+         </transition>
+      </conversational-orchestration-state>
+   </conversational-target-state>
+</composition>
+
+

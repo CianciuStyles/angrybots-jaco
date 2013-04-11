@@ -1,0 +1,28 @@
+1 NodeT
+2 NodeS
+3 NodeR 
+4 NodeQ
+5 NodeP
+6 NodeO
+7 NodeC
+8 NodeD
+9 NodeE
+#
+1 2 MoveTo
+1 5 MoveTo
+2 3 MoveTo
+3 4 MoveTo
+4 5 MoveTo
+5 6 MoveTo
+6 7 MoveTo
+7 8 MoveTo
+8 9 MoveTo
+1 1 TakeSnapshot
+2 2 TakeSnapshot
+3 3 TakeSnapshot
+4 4 TakeSnapshot
+5 5 TakeSnapshot
+6 6 TakeSnapshot
+7 7 TakeSnapshot
+8 8 TakeSnapshot
+9 9 TakeSnapshot

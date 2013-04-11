@@ -1,0 +1,18 @@
+1 NodeH
+2 NodeI
+3 NodeJ
+4 NodeK
+5 NodeL
+6 NodeM
+7 NodeB
+8 NodeN
+#
+1 2
+2 3
+3 4
+3 5
+4 5
+5 6
+6 7
+7 8
+8 1
