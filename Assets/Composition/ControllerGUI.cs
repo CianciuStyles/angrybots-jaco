@@ -99,9 +99,9 @@ public class ControllerGUI : MonoBehaviour {
 		// AskForComposition();
 		// GenerateFiles();
 		
-		//webService = new RESTfulClient("http://localhost:9799/jtlv", xmlDirectoryPath);
-		//webService = new RESTfulClient("http://jaco.dis.uniroma1.it:9090/1", xmlDirectoryPath);
-		webService = new RESTfulClient("http://jaco.dis.uniroma1.it:9090/1");
+		//webService = new RESTfulClient("http://localhost:9799/jtlv");
+		webService = new RESTfulClient("http://jaco.dis.uniroma1.it/1");
+		
 		webService.Authorize();
 		
 		foreach(KeyValuePair<string, GameObject> npc in npcsList) {
