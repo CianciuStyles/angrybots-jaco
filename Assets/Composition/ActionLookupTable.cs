@@ -189,7 +189,7 @@ public class ActionLookupTable {
 				
 				case "behaviorState":
 					//Debug.Log ("read a behaviorState");
-					ps.NpcStates.Add(reader.GetAttribute("service"), reader.GetAttribute("state"));
+					ps.NpcStates.Add(reader.GetAttribute("behavior"), reader.GetAttribute("state"));
 					break;
 				
 				case "transitions":

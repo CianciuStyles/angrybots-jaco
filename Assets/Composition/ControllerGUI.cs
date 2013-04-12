@@ -6,10 +6,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.Threading;
-//using UnityEditor;
 using UnityEngine;
 
-//[ExecuteInEditMode()]
 public class ControllerGUI : MonoBehaviour {
 	
 	private static int xOffset = 10;
@@ -22,21 +20,21 @@ public class ControllerGUI : MonoBehaviour {
 	
 	private GameObject pathNodesGameObject;
 	private GameObject npcsGameObject;
-	private GameObject targetBehaviourGameObject;
+	private GameObject targetBehaviorGameObject;
 
-	//private Hashtable npcsList = new Hashtable();
-	//private Hashtable nodesList = new Hashtable();
 	private IDictionary<string, GameObject> npcsList = new Dictionary<string, GameObject>();
 	private IDictionary<string, Transform> nodesList = new Dictionary<string, Transform>();
 	private int numberOfOptions;
 	
-	private ActionLookupTable actionLookupTable;
+	public ActionLookupTable actionLookupTable;
 	private bool executingAction;
 	public bool ExecutingAction
 	{
 		get {return executingAction;}
 		set {executingAction = value;}
 	}
+	
+	public bool showOptionList;
 	
 	public string CompositionGraphsDirectoryPath
 	{
@@ -88,8 +86,10 @@ public class ControllerGUI : MonoBehaviour {
 		//numberOfOptions = nodesList.Count;
 		Debug.Log(nodesList.Count + " nodes found.");
 
-		targetBehaviourGameObject = GameObject.Find("TargetBehaviour");
-		Debug.Log(targetBehaviourGameObject.name + " found.");
+		targetBehaviorGameObject = GameObject.Find("TargetBehavior");
+		Debug.Log(targetBehaviorGameObject.name + " found.");
+		
+		showOptionList = false;
 
 		// Write the XML files to be sent to the SM4LL service
 		//WriteXMLFiles();
@@ -99,6 +99,7 @@ public class ControllerGUI : MonoBehaviour {
 		// AskForComposition();
 		// GenerateFiles();
 		
+		/*
 		//webService = new RESTfulClient("http://localhost:9799/jtlv");
 		webService = new RESTfulClient("http://jaco.dis.uniroma1.it/1");
 		
@@ -134,6 +135,7 @@ public class ControllerGUI : MonoBehaviour {
 		//actionLookupTable = new ActionLookupTable(@"Assets/Composition/XML/Composition.xml");
 		actionLookupTable = new ActionLookupTable(composition, "xml");
 		Debug.Log("ActionLookupTable generated: " + actionLookupTable.Count + " states found.");
+		*/
 
 		// At the beginning, we are not performing any action, so we'd like to see all possible options
 		executingAction = false;
@@ -189,7 +191,7 @@ public class ControllerGUI : MonoBehaviour {
 		writer.Close();
 
 		// Save the XML file for the Target Behaviour
-		TargetBehaviour tb = targetBehaviourGameObject.GetComponent<TargetBehaviour>();
+		TargetBehavior tb = targetBehaviorGameObject.GetComponent<TargetBehavior>();
 		tb.SaveAsXml();
 
 	}
@@ -226,7 +228,7 @@ public class ControllerGUI : MonoBehaviour {
 			File.Delete(xmlDirectoryPath + npc.Value.name + ".sbl.xml");
 		
 		File.Delete(xmlDirectoryPath + "services.sdd.xml");
-		File.Delete(xmlDirectoryPath + targetBehaviourGameObject.name + ".sbl.xml");
+		File.Delete(xmlDirectoryPath + targetBehaviorGameObject.name + ".sbl.xml");
 	}
 
 	// Update is called once per frame
@@ -300,31 +302,33 @@ public class ControllerGUI : MonoBehaviour {
 		string MyEnemyMineBot1State = npcsList["MyEnemyMineBot1"].GetComponent<FiniteStateMachine>().CurrentState;
 		*/
 		
-		IDictionary<string, string> currentStates = new SortedDictionary<string, string>();
-		foreach(KeyValuePair<string, GameObject> npc in npcsList) 
-			currentStates.Add(npc.Key, npc.Value.GetComponent<FiniteStateMachine>().CurrentState);
-		
-		List<NextAction> nextActions = actionLookupTable.GetNextActions(currentStates);
-		//List<NextAction> nextActions = actionLookupTable.GetNextActions(MyEnemyMechState, MyEnemyMineBotState, MyEnemyMineBot1State);
-		//nextActions.Sort();
-		numberOfOptions = nextActions.Count;
-		
-		if (executingAction) {
-			GUI.Label( new Rect(xOffset, yOffset, 250, 30), "An action is being executed...");
-		} else {
-			GUI.Box(new Rect(xOffset, yOffset, boxWidth, (numberOfOptions+1)*lineHeight), "Controller Option List");
-			int currentOption = 0;
-			foreach (NextAction na in nextActions)
-			{
-				if (GUI.Button (new Rect(xOffsetButton, yOffsetButton + currentOption * lineHeight, buttonWidth, 30), na.actionName + " " + na.argument)) {
-					if (na.actionName == "TakeSnapshot")
-						Debug.Log("Click!");
-					else if (na.actionName == "MoveTo")
-						npcsList[na.npc].GetComponent<MoveNPC>().SetTargetPosition(nodesList[na.argument]);
+		if (showOptionList)
+		{
+			IDictionary<string, string> currentStates = new SortedDictionary<string, string>();
+			foreach(KeyValuePair<string, GameObject> npc in npcsList) 
+				currentStates.Add(npc.Key, npc.Value.GetComponent<FiniteStateMachine>().CurrentState);
+			
+			List<NextAction> nextActions = actionLookupTable.GetNextActions(currentStates);
+			//List<NextAction> nextActions = actionLookupTable.GetNextActions(MyEnemyMechState, MyEnemyMineBotState, MyEnemyMineBot1State);
+			//nextActions.Sort();
+			numberOfOptions = nextActions.Count;
+			
+			if (executingAction) {
+				GUI.Label( new Rect(xOffset, yOffset, 250, 30), "An action is being executed...");
+			} else {
+				GUI.Box(new Rect(xOffset, yOffset, boxWidth, (numberOfOptions+1)*lineHeight), "Controller Option List");
+				int currentOption = 0;
+				foreach (NextAction na in nextActions)
+				{
+					if (GUI.Button (new Rect(xOffsetButton, yOffsetButton + currentOption * lineHeight, buttonWidth, 30), na.actionName + " " + na.argument)) {
+						if (na.actionName == "TakeSnapshot")
+							Debug.Log("Click!");
+						else if (na.actionName == "MoveTo")
+							npcsList[na.npc].GetComponent<MoveNPC>().SetTargetPosition(nodesList[na.argument]);
+					}
+					currentOption++;
 				}
-				currentOption++;
 			}
 		}
-		
 	}
 }

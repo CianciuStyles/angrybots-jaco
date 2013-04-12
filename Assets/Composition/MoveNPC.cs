@@ -60,13 +60,13 @@ public class MoveNPC : MonoBehaviour {
 			path = p;
 			currentWaypoint = 0;
 			controller.ExecutingAction = true;
-			myCamera.active = true;
+			myCamera.SetActive(true);
 
 			halo.transform.position = targetPosition.position;
-			halo.active = true;
+			halo.SetActive(true);
 
 			haloStart.transform.position = gameObject.transform.position;
-			haloStart.active = true;	
+			haloStart.SetActive(true);	
 
 			for(int i=0; i < path.vectorPath.Length; i++)
 				lineRenderer.GetComponent<LineRenderer>().SetPosition(i, path.vectorPath[i]);
@@ -151,9 +151,9 @@ public class MoveNPC : MonoBehaviour {
 
 			GetComponent<FiniteStateMachine>().CurrentState = currentPathNode.name;
 			controller.ExecutingAction = false;
-			myCamera.active = false;
-			halo.active = false;
-			haloStart.active = false;
+			myCamera.SetActive(false);
+			halo.SetActive(false);
+			haloStart.SetActive(false);
 			lineRenderer.SetActive(false);
 			// Deactivate the AudioListener component of the corresponding camera
 			// If two AudioListeners are active at the same time, Unity will complain in the Console
@@ -211,5 +211,11 @@ public class MoveNPC : MonoBehaviour {
 			Debug.Log ("Is " + t.gameObject.name + " currently walkable?" + graph.GetGraphNode(t.gameObject).walkable);
 		}	
 		*/
+	}
+	
+	public void Reset()
+	{
+		transform.position = pathNodes[0].transform.position;
+		currentPathNode = pathNodes[0].gameObject;
 	}
 }

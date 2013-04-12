@@ -187,9 +187,14 @@ public class FiniteStateMachine : MonoBehaviour {
 		writer.Close();
 	}
 	
+	public void Reset ()
+	{
+		// Debug.Log("Resetting " + gameObject.name + "...");
+		currentState = readNodes[0].NodeName;
+	}
+	
 	public virtual string Serialize()
 	{
-		var sb = new StringBuilder();
 		MemoryStream memoryStream = new MemoryStream();
 		XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
 		xmlWriterSettings.Encoding = new UTF8Encoding(false);

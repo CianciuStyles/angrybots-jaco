@@ -13,7 +13,8 @@ public class TheGreatActivator : MonoBehaviour
 		
 		foreach (GameObject target in targets)
 		{
-			target.SetActiveRecursively (true);
+			//target.SetActiveRecursively (true);
+			target.SetActive(true);
 		}
 	}
 }

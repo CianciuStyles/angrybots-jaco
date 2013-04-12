@@ -10,6 +10,7 @@ public class DelayedDeactivation : MonoBehaviour
 	IEnumerator Start ()
 	{
 		yield return new WaitForSeconds (delay);
-		gameObject.SetActiveRecursively (false);
+		//gameObject.SetActiveRecursively (false);
+		gameObject.SetActive(false);
 	}
 }
