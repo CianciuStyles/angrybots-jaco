@@ -28,9 +28,15 @@ function Update ()
     {
         orthoOn = !orthoOn;
         if (orthoOn)
+        {
             BlendToMatrix(ortho, 1f);
+            gameObject.camera.orthographic = true;
+        }
         else
+        {
             BlendToMatrix(perspective, 1f);
+        	gameObject.camera.orthographic = false;
+        }
     }
 }
  
