@@ -217,5 +217,23 @@ public class MoveNPC : MonoBehaviour {
 	{
 		transform.position = pathNodes[0].transform.position;
 		currentPathNode = pathNodes[0].gameObject;
+		
+		if (gameObject.name.StartsWith("MyEnemyMech")) {
+			// Play the idle animation when the mech reaches its target position
+			GetComponentInChildren<Animation>().CrossFade("idle", 0.2f);
+		} else if (gameObject.name.StartsWith("MyEnemyMineBot")) {
+			// Play the awake animation when the minebot reaches its target position
+			GetComponentInChildren<Animation>().CrossFade("awake", 0.2f);
+		}
+		
+		path = null;
+		targetPosition = null;
+		graph.SetNodeAsWalkable(currentPathNode, false);
+
+		controller.ExecutingAction = false;
+		myCamera.SetActive(false);
+		halo.SetActive(false);
+		haloStart.SetActive(false);
+		lineRenderer.SetActive(false);
 	}
 }

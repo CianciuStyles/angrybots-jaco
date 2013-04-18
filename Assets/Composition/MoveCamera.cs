@@ -13,8 +13,8 @@ public class MoveCamera : MonoBehaviour {
 		Transform originalCamera = gameObject.transform;
 		originalCameraPosition = new Vector3(originalCamera.position.x, originalCamera.position.y, originalCamera.position.z);
 		
-		xAxisSpeed = 5.0f;
-		yAxisSpeed = 5.0f;
+		xAxisSpeed = 35.0f;
+		yAxisSpeed = 35.0f;
 		zAxisSpeed = 35.0f;
 	}
 	

@@ -67,8 +67,8 @@ public class StartStopGUI : MonoBehaviour {
 				Debug.Log("ActionLookupTable generated: " + controller.actionLookupTable.Count + " states found.");
 			}
 			
-			if ( controller.ExecutingAction )
-				GUI.enabled = false;
+			//if ( controller.ExecutingAction )
+			//	GUI.enabled = false;
 		
 			if ( GUILayout.Button("Reset") )
 			{
