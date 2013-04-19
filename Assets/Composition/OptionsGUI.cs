@@ -17,8 +17,9 @@ public class OptionsGUI : MonoBehaviour {
 	{
 		groupActions = false;
 		showOptions = false;
-		jacoURI = "http://jaco.dis.uniroma1.it/1";
-		baseFolder = "JaCO_data";
+		//jacoURI = "http://jaco.dis.uniroma1.it/1";
+		jacoURI = "http://localhost:8080/JaCO";
+		baseFolder = Application.dataPath + "/Composition/FiniteStateMachines";			
 	}
 	
 	// Update is called once per frame
@@ -55,16 +56,29 @@ public class OptionsGUI : MonoBehaviour {
 					GUILayout.Label("Folder with the .TGF files:");
 			
 					//GUILayout.BeginHorizontal();
-						baseFolder = GUILayout.TextField(baseFolder);
-						//GUILayout.FlexibleSpace();
-						if (GUILayout.Button("Select New Folder", GUILayout.ExpandWidth(false))) {
-							m_fileBrowser = new FileBrowser(new Rect(Screen.width * 0.25f, Screen.height * 0.1f, Screen.width * 0.5f, Screen.height * 0.8f), "Choose Folder...", FileSelectedCallback);
-							m_fileBrowser.BrowserType = FileBrowserType.Directory;
-							m_fileBrowser.SelectionPattern = "*";
-							m_fileBrowser.DirectoryImage = m_directoryImage;
-							m_fileBrowser.FileImage = m_fileImage;
-						}
+					baseFolder = GUILayout.TextField(baseFolder);
+					//GUILayout.FlexibleSpace();
+					if (GUILayout.Button("Select New Folder", GUILayout.ExpandWidth(false))) {
+						m_fileBrowser = new FileBrowser(new Rect(Screen.width * 0.25f, Screen.height * 0.1f, Screen.width * 0.5f, Screen.height * 0.8f), "Choose Folder...", FileSelectedCallback);
+						m_fileBrowser.BrowserType = FileBrowserType.Directory;
+						m_fileBrowser.SelectionPattern = "*";
+						m_fileBrowser.DirectoryImage = m_directoryImage;
+						m_fileBrowser.FileImage = m_fileImage;
+					}
 					//GUILayout.EndHorizontal();
+			
+					GUILayout.Space(15);
+					    GUILayout.BeginVertical();
+						    GUILayout.BeginHorizontal();
+							    GUILayout.FlexibleSpace();
+							    if (GUILayout.Button("OK"))
+								{
+									showOptions = false;
+									Time.timeScale = 1.0f;
+								}	
+							    GUILayout.FlexibleSpace();
+						    GUILayout.EndHorizontal();
+					    GUILayout.EndVertical();
 		        GUILayout.EndVertical();
 			
 			//GUILayout.EndScrollView();

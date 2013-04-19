@@ -11,7 +11,10 @@ public class TargetBehavior : FiniteStateMachine {
 	// Use this for initialization
 	public override void Start () {
 		readNodes = new List<FSMNodeWithTransitions>();
-		filename = @"Assets/Composition/FiniteStateMachines/TargetBehavior.tgf";
+		if (baseFolder == null)
+			filename = @"Assets/Composition/FiniteStateMachines/" + gameObject.name + "FSM.tgf";
+		else
+			filename = baseFolder + "/TargetBehavior.tgf";
 		StreamReader file = new StreamReader(filename);
 		
 		while(file.EndOfStream == false)
@@ -63,6 +66,8 @@ public class TargetBehavior : FiniteStateMachine {
 
 		currentState = readNodes[0].NodeName;
 		file.Close();
+		
+		Debug.Log ("TargetBehavior: " + readNodes.Count + " nodes found.");
 	}
 	
 	// Update is called once per frame

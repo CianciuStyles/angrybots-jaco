@@ -46,6 +46,16 @@ public class StartStopGUI : MonoBehaviour {
 	
 			if ( GUILayout.Button("Start") )
 			{
+			
+				foreach(KeyValuePair<string, GameObject> npc in npcsList) {
+					npc.Value.GetComponent<FiniteStateMachine>().baseFolder = opts.baseFolder;
+					npc.Value.GetComponent<FiniteStateMachine>().Start();
+					// npc.Value.GetComponent<FiniteStateMachine>().Reset();
+					npc.Value.GetComponent<MoveNPC>().Reset();
+				}
+				targetBehavior.GetComponent<TargetBehavior>().baseFolder = opts.baseFolder;
+				targetBehavior.GetComponent<TargetBehavior>().Start();
+			
 				Debug.Log ("Trying to connect to " + opts.jacoURI);
 					
 				webService = new RESTfulClient(opts.jacoURI);

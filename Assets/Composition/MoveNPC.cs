@@ -29,7 +29,8 @@ public class MoveNPC : MonoBehaviour {
 	void Start () {
 		// Read dynamically the movement graph from the corresponding file, create
 		// the CompositionGraph and add it to the graphs maintained by A* Pathfinding
-		string filename = @"Assets/Composition/CompositionGraphs/" + gameObject.name + "Graph.tgf";
+		//string filename = Application.dataPath + "/Composition/CompositionGraphs/" + gameObject.name + "Graph.tgf";
+		string filename = Application.dataPath + "/Composition/PathfindingGraphs/" + gameObject.name + "Graph.tgf";
 		graph = new CompositionGraph(filename);
 		graph.name = gameObject.name + " Graph";
 		// Debug.Log ("Scanning " + gameObject.name + "...");

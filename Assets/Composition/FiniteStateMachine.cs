@@ -9,6 +9,7 @@ using System.Xml;
 [AddComponentMenu ("Composition/Finite State Machine")]
 public class FiniteStateMachine : MonoBehaviour {
 	
+	public string baseFolder = null;
 	protected string filename;
 	
 	protected IList<FSMNodeWithTransitions> readNodes;
@@ -52,7 +53,12 @@ public class FiniteStateMachine : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
 		readNodes = new List<FSMNodeWithTransitions>();
-		filename = @"Assets/Composition/FiniteStateMachines/" + gameObject.name + "FSM.tgf";
+		if (baseFolder == null)
+			filename = @"Assets/Composition/FiniteStateMachines/" + gameObject.name + "FSM.tgf";
+		else
+			filename = baseFolder + "/" + gameObject.name + "FSM.tgf";
+		
+		Debug.Log ("Reading " + filename + "...");
 		StreamReader file = new StreamReader(filename);
 		
 		while(file.EndOfStream == false)
@@ -110,6 +116,8 @@ public class FiniteStateMachine : MonoBehaviour {
 
 		currentState = readNodes[0].NodeName;
 		file.Close();
+		
+		// Debug.LogError (gameObject.name + ": " + readNodes.Count + " nodes found.");
 	}
 	
 	// Update is called once per frame

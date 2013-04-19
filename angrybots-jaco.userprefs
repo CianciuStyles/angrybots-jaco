@@ -1,14 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Composition\MoveNPC.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Composition\FiniteStateMachine.cs">
     <Files>
-      <File FileName="Assets\Composition\OptionsGUI.cs" Line="49" Column="4" />
+      <File FileName="Assets\Composition\FiniteStateMachine.cs" Line="38" Column="4" />
+      <File FileName="Assets\Editor\MyBuildPostProcess.cs" Line="11" Column="9" />
+      <File FileName="Assets\Composition\ControllerGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Composition\TargetBehavior.cs" Line="1" Column="1" />
+      <File FileName="Assets\Composition\OptionsGUI.cs" Line="77" Column="32" />
       <File FileName="Assets\Composition\MoveNPC.cs" Line="1" Column="1" />
       <File FileName="Assets\Composition\MoveCamera.cs" Line="1" Column="1" />
       <File FileName="Assets\Composition\ActionLookupTable.cs" Line="1" Column="1" />
-      <File FileName="Assets\Composition\StartStopGUI.cs" Line="44" Column="97" />
-      <File FileName="Assets\Composition\ControllerGUI.cs" Line="15" Column="35" />
-      <File FileName="Assets\Composition\FiniteStateMachine.cs" Line="1" Column="1" />
+      <File FileName="Assets\Composition\StartStopGUI.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
