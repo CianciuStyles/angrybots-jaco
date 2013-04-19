@@ -5,6 +5,8 @@ using System.Threading;
 
 public class StartStopGUI : MonoBehaviour {
 	
+	public GUISkin metalGUISkin;
+	
 	ControllerGUI controller;
 	OptionsGUI opts;
 	
@@ -37,7 +39,9 @@ public class StartStopGUI : MonoBehaviour {
 	
 	void OnGUI ()
 	{
-		GUILayout.BeginArea( new Rect(Screen.width * 0.4f, Screen.height - 50f, Screen.width * 0.2f, 30f) );
+		GUI.skin = metalGUISkin;
+		
+		GUILayout.BeginArea( new Rect(Screen.width * 0.4f, Screen.height - 50f, Screen.width * 0.2f, 40f) );
 		GUILayout.BeginHorizontal("box");
 	
 			if ( GUILayout.Button("Start") )

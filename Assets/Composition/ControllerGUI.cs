@@ -12,7 +12,7 @@ public class ControllerGUI : MonoBehaviour {
 	
 	private static int xOffset = 10;
 	private static int yOffset = 10;
-	private static int boxWidth = 180;
+	private static int boxWidth = 185;
 	private static int buttonWidth = 160;
 	private static int lineHeight = 35;
 	private static int xOffsetButton = xOffset + (boxWidth - buttonWidth)/2;
@@ -46,6 +46,7 @@ public class ControllerGUI : MonoBehaviour {
 	public string finiteStateMachinesDirectoryPath = @"Assets/Composition/FiniteStateMachines";
 	public string xmlDirectoryPath = @"Assets/Composition/XML/";
 	
+	public GUISkin metalGUISkin;
 	private RESTfulClient webService;
 
 	// Use this for initialization
@@ -313,8 +314,15 @@ public class ControllerGUI : MonoBehaviour {
 			//nextActions.Sort();
 			numberOfOptions = nextActions.Count;
 			
+			GUI.skin = metalGUISkin;
+			
 			if (executingAction) {
-				GUI.Label( new Rect(xOffset, yOffset, 250, 30), "An action is being executed...");
+				// GUI.Label( new Rect(xOffset, yOffset, 250, 30), "An action is being executed...");
+				GUILayout.BeginArea(new Rect(10, 10, boxWidth, boxWidth));
+				GUILayout.BeginVertical(GUI.skin.box);
+				GUILayout.Label("An action is being executed...");
+				GUILayout.EndVertical();
+				GUILayout.EndArea();
 			} else {
 				GUI.Box(new Rect(xOffset, yOffset, boxWidth, (numberOfOptions+1)*lineHeight), "Controller Option List");
 				int currentOption = 0;

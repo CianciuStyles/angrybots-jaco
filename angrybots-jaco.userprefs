@@ -2,12 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Composition\MoveNPC.cs">
     <Files>
-      <File FileName="Assets\Composition\MoveNPC.cs" Line="222" Column="11" />
-      <File FileName="Assets\Composition\MoveCamera.cs" Line="17" Column="17" />
+      <File FileName="Assets\Composition\OptionsGUI.cs" Line="49" Column="4" />
+      <File FileName="Assets\Composition\MoveNPC.cs" Line="1" Column="1" />
+      <File FileName="Assets\Composition\MoveCamera.cs" Line="1" Column="1" />
       <File FileName="Assets\Composition\ActionLookupTable.cs" Line="1" Column="1" />
-      <File FileName="Assets\Composition\StartStopGUI.cs" Line="71" Column="6" />
-      <File FileName="Assets\Composition\OptionsGUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Composition\ControllerGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Composition\StartStopGUI.cs" Line="44" Column="97" />
+      <File FileName="Assets\Composition\ControllerGUI.cs" Line="15" Column="35" />
       <File FileName="Assets\Composition\FiniteStateMachine.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
